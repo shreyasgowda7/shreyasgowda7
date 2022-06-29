@@ -1,0 +1,68 @@
+Given an array of positive integers. Find the length of the longest sub-sequence such that elements in the subsequence are consecutive integers, the consecutive numbers can be in any order.
+ 
+
+Example 1:
+
+Input:
+N = 7
+a[] = {2,6,1,9,4,5,3}
+Output:
+6
+Explanation:
+The consecutive numbers here
+are 1, 2, 3, 4, 5, 6. These 6 
+numbers form the longest consecutive
+subsquence.
+Example 2:
+
+Input:
+N = 7
+a[] = {1,9,3,10,4,20,2}
+Output:
+4
+Explanation:
+1, 2, 3, 4 is the longest
+consecutive subsequence.
+
+
+
+
+
+class Solution{
+  public:
+    // arr[] : the input array
+    // N : size of the array arr[]
+    
+    //Function to return length of longest subsequence of consecutive integers.
+    int findLongestConseqSubseq(int arr[], int N)
+    {
+      set<int>s;
+      
+      for(int i=0;i<N;i++)
+      s.insert(arr[i]);
+      
+      int streak=0,lstreak=0;
+      int cur;
+      
+      
+      for(int i=0;i<N;i++)
+      {
+          if(!s.count(arr[i]-1))
+          {
+              streak=1;
+              cur=arr[i];
+              
+          }
+          
+          while(s.count(arr[i]+1))
+          {
+              cur++;
+              streak++;
+              
+          }
+          lstreak=max(lstreak,streak);
+      }
+      
+      return lstreak;
+    }
+};
