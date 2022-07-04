@@ -12,7 +12,7 @@ Explanation: The minimum difference between
 maximum chocolates and minimum chocolates 
 is 9 - 3 = 6 by choosing following M packets :
 {3, 4, 9, 7, 9}.
-Example 2:
+Example 2
 
 Input:
 N = 7, M = 3
