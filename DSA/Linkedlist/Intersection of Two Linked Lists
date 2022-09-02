@@ -1,0 +1,91 @@
+Intersection of Two Linked Lists
+
+Input: intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+Output: Intersected at '8'
+
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        
+        int len1=0,len2=0,len;
+        
+        ListNode *temp1=headA,*temp2=headB;
+        
+        while(temp1 != NULL)
+        {
+          len1++;
+            temp1=temp1->next;
+         }
+        
+        
+        while(temp2 != NULL)
+        {
+          len2++;
+            temp2=temp2->next;
+         }
+         
+         if(len1>len2)
+             len=len1-len2;
+        else len=len2-len1;
+         
+        while(len--)
+        {
+           if(len1>len2)
+            headA=headA->next;
+            else
+                headB=headB->next;
+            
+        }
+        while(headA != NULL && headB != NULL)
+        {
+            if(headA == headB)
+                return headA;
+            else{
+                headA=headA->next;
+                headB=headB->next;
+                
+            }
+        }
+      return NULL;  
+    }
+};
+
+
+
+
+SOLUTION 2:
+
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        if (headA==NULL || headB==NULL)
+        {
+            return NULL;
+        }
+        ListNode *ptrA=headA, *ptrB=headB;
+        while(ptrA!=NULL || ptrB!=NULL)
+        {
+            if(ptrA==NULL)
+                ptrA=headB;
+            if(ptrB==NULL)
+                ptrB=headA;
+            if (ptrA==ptrB)
+                return ptrA;
+            ptrA=ptrA->next;
+            ptrB=ptrB->next;
+        }
+        return NULL;
+    }
+};
+
+
+
+
+
+
+
+
+
+
+
