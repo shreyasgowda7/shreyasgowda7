@@ -1,0 +1,31 @@
+class Solution {
+public:
+  
+Approach: for negative power take reciprocal of number, if power even multiply number with itself and reduce the power by 2. 
+
+double res(double x, int n)
+   {
+       if(n==1)
+       return x;
+
+       if(n==0)
+       return 1;
+
+       if(n<0)
+       { 
+           n=abs(n);
+           x=1/x;
+       }
+
+       if(n%2==0)
+       return res(x*x,n/2);
+       
+       else return x*res(x,n-1);
+   }
+    double myPow(double x, int n) {
+        return res(x,n);
+    }
+};
+
+
+Complexity: time and space O(log(N))
