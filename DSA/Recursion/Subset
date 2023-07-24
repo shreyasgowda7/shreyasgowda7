@@ -1,0 +1,26 @@
+Approach: recursive call exculding element and including element.
+
+Solution
+
+void subset_help(int i,vector<int>nums,vector<int>ans)
+{   
+    if(i>=nums.size())
+    {
+        result.push_back(ans);
+        return;
+    }
+    subset_help(i+1,nums,ans);
+    ans.push_back(nums[i]);
+    subset_help(i+1,nums,ans);
+
+}
+    vector<vector<int>> subsets(vector<int>& nums) {
+        vector<int>ans;
+        subset_help(0,nums,ans);
+        return result;
+    }
+};
+
+
+Time Complexity: O(2^n). Total number of subsets generated are 2^n, So Time Complexity is O(2^n). If we include the time taken to copy the subset vector into the res vector the time taken will be equal to the size of the subset vector.
+Auxiliary Space: O(n) There can be at max n recursion calls at a particular time, which would consume O(n) stack space
