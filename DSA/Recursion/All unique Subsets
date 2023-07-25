@@ -1,0 +1,38 @@
+Approach: while excluding exclude all occurence of the element
+
+class Solution {
+public:
+
+    void solve(int i,vector<int>nums,vector<int>ans,vector<vector<int>>&res)
+    {
+      if(i>=nums.size())
+      {
+          res.push_back(ans);
+          return;
+      }
+      # include 
+      ans.push_back(nums[i]);
+      solve(i+1,nums,ans,res);
+      ans.pop_back();
+
+      # not include
+      while(i+1<nums.size() && nums[i]==nums[i+1])i++;
+      solve(i+1,nums,ans,res);
+
+
+    }
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<vector<int>>res;
+        
+        vector<int>ans;
+        sort(nums.begin(),nums.end());
+        solve(0,nums,ans,res);
+        
+
+        return res;
+    }
+};
+
+
+Time complexity: O(2 power n)
+Space complexity : O(N)
