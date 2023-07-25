@@ -1,0 +1,35 @@
+Approach: Swapping charcters, build recursive treee and backtrack
+
+class Solution {
+public:
+    
+    void permutation(int i,vector<int>nums,vector<vector<int>>&result)
+    {
+      if(i>=nums.size())
+      {
+          result.push_back(nums);
+          return;
+      }
+
+      for(int j=0;j<=i;j++)
+      {   
+          swap(nums[i],nums[j]);
+          permutation(i+1,nums,result);
+          swap(nums[i],nums[j]);
+          
+      }
+
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+
+        
+        vector<vector<int>>result;
+
+        permutation(0,nums,result);
+        return result;
+    }
+};
+
+
+Time Complexity: O(N * N!) i.e. there are N! permutations and it requires O(N) time to print a permutation.
+Auxiliary Space: O(|S|)
