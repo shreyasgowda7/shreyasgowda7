@@ -11,7 +11,7 @@ public:
           return;
       }
 
-      for(int j=0;j<=i;j++)
+      for(int j=i;j<nums.size();j++)
       {   
           swap(nums[i],nums[j]);
           permutation(i+1,nums,result);
