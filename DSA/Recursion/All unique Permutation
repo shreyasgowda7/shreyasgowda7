@@ -1,0 +1,35 @@
+Approach: store all permutations in a set of vectors
+
+class Solution {
+public:
+    void unique(int i,vector<int>nums,set<vector<int>>&res)
+    {
+        if(i>=nums.size())
+        {    
+            res.insert(nums);
+            return;
+        }
+        for(int j=i;j<nums.size();j++)
+        {
+            swap(nums[i],nums[j]);
+            unique(i+1,nums,res);
+            swap(nums[i],nums[j]);
+        }
+    }
+
+    vector<vector<int>> permuteUnique(vector<int>& nums) {
+    set<vector<int>>res;
+    vector<vector<int>> ans;
+    
+    unique(0,nums,res);
+    for(auto i:res)
+    {
+        ans.push_back(i);
+    }        
+    return ans;
+    }
+};
+
+
+Time complexity: O(n!)
+Space complexity: O(n!)
