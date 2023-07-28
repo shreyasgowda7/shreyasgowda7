@@ -1,0 +1,38 @@
+Given two integers n and k, return all possible combinations of k numbers chosen from the range [1, n].
+
+Approach: Include/exclude element in subset and check for size == k , while including recursice call with k-1. else recusrsive call with k
+
+class Solution {
+public:
+    void solve(int i,int n,vector<int>&ans,vector<vector<int>>&res,int k)
+    {   
+        
+        if(0==k)
+        {
+            res.push_back(ans);
+            return;
+        }
+        if(k>n-i+1)
+        return;
+        if(i>n)
+        {
+            return;
+        }
+        
+        ans.push_back(i);
+        solve(i+1,n,ans,res,k-1);
+        ans.pop_back();
+        solve(i+1,n,ans,res,k);
+
+
+    }
+    vector<vector<int>> combine(int n, int k) {
+        
+        vector<vector<int>>res;
+        vector<int>ans;
+        solve(1,n,ans,res,k);
+        return res;
+    }
+};
+
+Complexity:
