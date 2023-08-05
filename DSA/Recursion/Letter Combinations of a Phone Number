@@ -1,0 +1,44 @@
+Approach: For each value of one number pass and add with all value af other number and call recursion. for ex: Input: digits = "23"
+Output: ["ad","ae","af","bd","be","bf","cd","ce","cf"]
+
+class Solution {
+public:
+
+    void solve(string digits,string output,vector<string>&ans,int i,string mapping[])
+    {
+       if(i>=digits.length())
+       {
+           ans.push_back(output);
+           return;
+       }
+       
+       int number=digits[i]-'0';
+       string val=mapping[number];
+
+       for(int j=0;j<val.length();j++)
+       {
+           output.push_back(val[j]);
+           solve(digits,output,ans,i+1,mapping);
+           output.pop_back();
+       }
+
+
+    }
+    vector<string> letterCombinations(string digits) {
+
+        vector<string>ans;
+        if(digits.length()==0)
+        return ans;
+        string output="";
+        string mapping[10]={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        solve(digits,output,ans,0,mapping);
+
+        return ans;
+
+
+        
+    }
+};
+
+Time Complexity: O(3 power n)
+Space: O(n)
