@@ -2,6 +2,8 @@ Given an array A[ ] of positive integers of size N, where each value represents 
 1. Each student gets exactly one packet.
 2. The difference between maximum number of chocolates given to a student and minimum number of chocolates given to a student is minimum.
 
+Approach: Sort array , and find min of first and last elemnt of every sub array 
+
 Example 1:
 
 Input:
