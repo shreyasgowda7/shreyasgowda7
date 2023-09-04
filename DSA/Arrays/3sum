@@ -1,0 +1,28 @@
+Approach: Sort and use 3 poitners, i from 0 to n-1, j=i+1, k=n-1
+
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+         set<vector<int>>output;
+         vector<vector<int>>ans;
+       sort(nums.begin(),nums.end());
+        for(int i=0;i<nums.size();i++)
+        { int j=i+1;
+          int k=nums.size()-1;
+          while(j<k)
+          {
+            int sum=nums[i]+nums[j]+nums[k];
+            if(sum==0)
+            output.insert({nums[i],nums[j],nums[k]});
+            
+            if(sum<0)
+            j++;
+            else k--;
+          }
+
+        }
+        for(auto s:output)
+        ans.push_back(s);
+        return ans;
+    }
+};
