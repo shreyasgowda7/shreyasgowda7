@@ -1,0 +1,37 @@
+Approach: calculate sum for each index and % k, and also store map of remainder for each index, if remainder repeat means that length is divisbly by k.
+
+class Solution{
+public:	
+	int longSubarrWthSumDivByK(int arr[], int n, int k)
+	{
+	    map<int,int>m;
+	    int maxy=0;
+	    int sum=0;
+	    
+	    for(int i=0;i<n;i++)
+	    {   
+	        int rem;
+	        sum+=arr[i];
+	        
+	        if(sum%k==0)
+	        {
+	            maxy=i+1;
+	        }
+	        rem=sum%k;
+	        if(rem<0)
+	        rem+=k;
+	        
+	        if(m.find(rem)==m.end())
+	        {
+	            m[rem]=i;
+	        }
+	        else
+	        {
+	            if(maxy<i-m[rem])
+	            maxy=i-m[rem];
+	        }
+	        
+	    }
+	    return maxy;
+	}
+};
