@@ -1,0 +1,91 @@
+Approach: replace O's with - starting from boundaries and its adjacent 4 directions. again traverse matrix if find O replace with X.
+
+//{ Driver Code Starts
+// Initial Template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution{
+public:
+void DFS(vector<vector<char>>& board,int i,int j,char prev,char neww,int n,int m)
+    { 
+     
+      if(i<0 || i==n || j<0 || j==m)
+      return;
+      if(board[i][j]!=prev)
+      return;
+      
+      board[i][j]=neww;
+      
+      DFS(board,i,j+1,prev,neww,n,m);
+      DFS(board,i+1,j,prev,neww,n,m);
+      DFS(board,i,j-1,prev,neww,n,m);
+      DFS(board,i-1,j,prev,neww,n,m);
+      
+    }
+
+    vector<vector<char>> fill(int n, int m, vector<vector<char>> board)
+    {
+        
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {   
+                if(i==0 || i==n-1 || j==0 || j==m-1)
+                {
+                if('O'==board[i][j])
+                {
+                  DFS(board,i,j,'O','-',n,m);
+                }
+                }
+            }
+        }
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {   
+                
+                if('O'==board[i][j])
+                {
+                  board[i][j]='X';
+                }
+                else if(board[i][j]=='-')
+                board[i][j]='O';
+                }
+            }
+        
+      return board;
+    }
+    
+};
+
+//{ Driver Code Starts.
+
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n, m;
+        cin>>n>>m;
+        vector<vector<char>> mat(n, vector<char>(m, '.'));
+        for(int i = 0;i < n;i++)
+            for(int j=0; j<m; j++)
+                cin>>mat[i][j];
+        
+        Solution ob;
+        vector<vector<char>> ans = ob.fill(n, m, mat);
+        for(int i = 0;i < n;i++) {
+            for(int j = 0;j < m;j++) {
+                cout<<ans[i][j]<<" ";
+            }
+            cout<<"\n";
+        }
+    }
+    return 0;
+}
+// } Driver Code Ends
