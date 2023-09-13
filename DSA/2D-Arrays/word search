@@ -1,0 +1,47 @@
+Approach: traverse 4 direction and update visited  
+
+
+class Solution {
+public:
+
+    bool search(vector<vector<char>>& board,string word,int i,int m,int n)
+    { 
+        
+      if(i==word.size())
+      {
+       return true; 
+      }  
+     
+      if(m<0 || m==board.size() || n<0 || n==board[0].size() || board[m][n]!=word[i])
+      return false;
+
+      board[m][n]='#' ;
+
+      
+      bool op1=search(board,word,i+1,m,n+1); 
+       bool op2=search(board,word,i+1,m+1,n); 
+       bool op3=search(board,word,i+1,m-1,n); 
+       bool op4=search(board,word,i+1,m,n-1); 
+      board[m][n]=word[i];
+      
+      return op1|op2|op3|op4;
+      
+
+    }
+    bool exist(vector<vector<char>>& board, string word) {
+        int m=board.size();
+        int n=board[0].size();
+        
+        
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(word[0]==board[i][j])
+                if(search(board,word,0,i,j))
+                return true;
+            }
+        }
+      return false;
+    }
+};
