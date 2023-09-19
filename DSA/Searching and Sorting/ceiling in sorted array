@@ -1,0 +1,23 @@
+Approach: use binary search to find smallest ele greater than given x.
+
+  #include <bits/stdc++.h>
+using namespace std;
+
+/* Function to get index of
+	ceiling of x in arr[low..high]*/
+int ceilSearch(int arr[], int low, int high, int x)
+{
+
+	while (low <= high) {
+		mid = low + (high - low) / 2;
+		if (arr[mid] == x)
+			return mid;
+		else if (x < arr[mid])
+			high = mid - 1;
+		else
+			low = mid + 1;
+	}
+	return low;
+}
+
+
