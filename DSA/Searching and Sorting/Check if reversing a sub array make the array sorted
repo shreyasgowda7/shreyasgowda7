@@ -1,0 +1,31 @@
+Approach: initialize x and y with -1. use x y to get start and end index of subarray to reverse, then reverse it if its still not sorted then false else true.
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool sortArr(int a[], int n)
+{
+	int x = -1;
+	int y = -1;
+
+	for (int i = 0; i < n - 1; i++) {
+		if (a[i] > a[i + 1]) {
+			if (x == -1) {
+				x = i;
+			}
+			y = i + 1;
+		}
+	}
+
+	if (x != -1) {
+		reverse(a + x, a + y + 1);
+		for (int i = 0; i < n - 1; i++) {
+			if (a[i] > a[i + 1]) {
+				return false;
+				return 0;
+			}
+		}
+	}
+
+	return true;
+}
