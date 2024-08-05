@@ -47,3 +47,66 @@ int main() {
     sh1->draw();
     return 0;
 }
+
+
+//
+
+
+#include <iostream>
+#include <mutex>
+#include<thread>
+using namespace std;
+
+class vehicle
+{
+    public: virtual void createvehicle()=0;
+};
+
+class twowheeler:public vehicle
+{
+    public:
+    void createvehicle()
+    {
+        cout<<"girls like me broo\n";
+    }
+};
+
+class fourwheeler:public vehicle
+{
+    public:
+    void createvehicle()
+    {
+        cout<<"boys like me broo\n";
+    }
+};
+
+class vehiclefactory
+{
+    string strs;
+    public: 
+    vehiclefactory(string str)
+    {
+        this->strs=str;
+    }
+    
+    vehicle* getvehicle()
+    {
+        if(strs=="boys")
+            return new fourwheeler();
+        
+        else return new twowheeler();
+    }
+};
+
+int main() {
+    
+  vehiclefactory *vh = new vehiclefactory("boys");
+  vehicle *v1=vh->getvehicle();
+  v1->createvehicle();
+  
+  vehiclefactory *vh1 = new vehiclefactory("girlsasasas");
+  vehicle *v11=vh1->getvehicle();
+  v11->createvehicle();
+  
+}
+//
