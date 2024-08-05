@@ -1,4 +1,4 @@
-// Online C++ compiler to run C++ program online
+// creation of object logic is kept in factory class and it will create and return the object
 #include <iostream>
 using namespace std;
 
