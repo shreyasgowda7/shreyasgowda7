@@ -1,75 +1,50 @@
-// Online C++ compiler to run C++ program online
 #include <iostream>
-#include <bits/stdc++.h>
 using namespace std;
-
-class DriveStrategy {
+#include <vector>
+class SortingStrategy {
 public:
-	virtual void drive() = 0;
+    virtual void sort(vector<int>& arr) = 0;
 };
 
-class NormalDrive : public DriveStrategy {
+class BubbleSort : public SortingStrategy {
 public:
-	void drive() 
-	{
-		cout<<"Normal drivingg\n";
-	}
-};
-
-class SpecialDrive : public DriveStrategy {
-public:
-	void drive()
-	{
-		cout<<"Special drivingg";
-	}
-};
-
-
-
-class Vehicle {
-private:
-	DriveStrategy* strategy;
-
-public:
-    Vehicle(DriveStrategy* strategy) 
-    {
-        this->strategy=strategy;
-    }
-	void setStrategy(DriveStrategy* strategy)
-	{
-		this->strategy = strategy;
-	}
-
-	void executeStrategy()
-	{
-		strategy->drive();
-	}
-};
-
-class passenger: public Vehicle
-{
-    public:
-    passenger(): Vehicle(new SpecialDrive())
-    {
-        
+    void sort(std::vector<int>& arr) override {
+        cout<<"Sorting with bubble\n";
     }
 };
-int main()
+ 
+class QuickSort : public SortingStrategy {
+public:
+    void sort(std::vector<int>& arr) override {
+        cout<<"Sorting with quick\n";
+    }
+};
+ 
+
+class SortTool
 {
-	Vehicle* vv=new passenger();
-	vv->executeStrategy();
-    NormalDrive normal;
-	SpecialDrive special;
-	Vehicle vehicle(&normal);
-	
-    passenger v1;
-    
-    v1.executeStrategy();
-	vehicle.setStrategy(&normal);
-	vehicle.executeStrategy(); // Executes Bubble Sort
+    private:
+    SortingStrategy* strategy;
+ 
+ public:
+    void setStrategy(SortingStrategy* strategy) {
+        this->strategy = strategy;
+    }
+ 
+    void executeStrategy(std::vector<int>& arr) {
+        strategy->sort(arr);
+    }
+};
 
-	vehicle.setStrategy(&special);
-	vehicle.executeStrategy(); // Executes Quick Sort
 
-	return 0;
+int main() {
+  
+  SortTool *t1= new SortTool();
+  SortingStrategy *st=new QuickSort();
+  t1->setStrategy(st);
+  vector<int>a(1,0);
+  st->sort(a);
+  
+  
+  return 0;
 }
