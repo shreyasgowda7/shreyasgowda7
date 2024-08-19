@@ -43,7 +43,8 @@ int main() {
   SortingStrategy *st=new QuickSort();
   t1->setStrategy(st);
   vector<int>a(1,0);
-  st->sort(a);
+  //st->sort(a);
+  t1->executeStrategy(a);
   
   
   return 0;
