@@ -17,6 +17,7 @@ Explanation: Floor of 10 is 8 but ceil of 10 is not possible.
 
 Logic: use binary search , for optimal use vector of 2 length and store compare elememnt with target for ceil floor
 
+optimal: use binary search for ceil and for floor sepeartely
 
 */
 
